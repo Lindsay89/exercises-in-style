@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createRef, useEffect } from "react";
 import classNames from "classnames";
 import { DefaultProps } from "../../utils/types";
 
@@ -26,21 +26,62 @@ const defaultProps: GalleryOptionalProps = {
 
 const Gallery: React.FC<GalleryProps> = ({ className, images, ...rest }) => {
   const classList = classNames("eis-gallery", className);
-  const [selectedImage, setSelectedImage] = useState<string>(images[1]);
-  console.log(images);
+  const [selectedImage, setSelectedImage] = useState<number>(0);
+  const ref = createRef<HTMLDivElement>();
+
+  const [position, setPosition] = useState<number>(
+    (ref.current?.clientHeight as number) / 2 - 80
+  );
+  const handleImageSelection = (img: number) => {
+    if (ref.current) {
+      setPosition(ref.current?.clientHeight / 2 - 80);
+    }
+
+    setSelectedImage(img);
+    console.log(ref.current);
+  };
+  useEffect(() => {
+    if (
+      ref.current &&
+      ref.current.style.backgroundImage.includes(images[selectedImage])
+    ) {
+      setPosition((ref.current?.clientHeight as number) / 2 - 80);
+    }
+  }, []);
+  const calculatePositions = (index: number) => {
+    if (index > selectedImage)
+      return (
+        position +
+        168 +
+        120 * (index - selectedImage - 1) +
+        (index - selectedImage) * 20 +
+        "px"
+      );
+    return position - 120*(selectedImage-index) - (selectedImage-index) * 20  + "px";
+  };
   return (
     <div className={classList} {...rest}>
       <div
-        style={{ backgroundImage: `url(${selectedImage})` }}
+        style={{ backgroundImage: `url(${images[selectedImage]})` }}
         className="gallery-background-image"
-      >
+        ref={ref}
+      />
+      <div className="images-container">
         <div className="images-scroll">
-          {images.map((image) => (
+          {images.map((image, index) => (
             <div
               key={image}
-              style={{ backgroundImage: `url(${image})`, width: "10rem" }}
-              className="image"
-              onClick={() => setSelectedImage(image)}
+              style={{
+                backgroundImage: `url(${image})`,
+                top:
+                  selectedImage === index
+                    ? position + "px"
+                    : calculatePositions(index),
+              }}
+              className={
+                selectedImage === index ? "selected-image image" : "image"
+              }
+              onClick={() => handleImageSelection(index)}
             />
           ))}
         </div>
