@@ -1,6 +1,11 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { Gallery } from "./components";
+import firstImage from "./assets/images/1.jpg";
+import secondImage from "./assets/images/2.jpg";
+import thirdImage from "./assets/images/3.jpg";
+import fourthImage from "./assets/images/4.jpg";
 
 function App() {
   return (
@@ -8,17 +13,9 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-          My app
+          Edit <code>src/App.tsx</code> and save to reload. My app
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Gallery images={[firstImage, secondImage, thirdImage, fourthImage]} />
       </header>
     </div>
   );

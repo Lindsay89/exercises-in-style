@@ -1,0 +1,48 @@
+.eis-gallery {
+  height: 30rem;
+  width: 100rem;
+
+  .gallery-background-image {
+    height: 100%;
+    width: 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-between;
+  }
+  .images-scroll {
+    height: 100%;
+    margin-left: 2.5rem;
+    overflow: auto;
+    scrollbar-width: 0;
+    .image {
+      width: 10rem;
+      height: 10rem;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      border-radius: 100%;
+      border: 0.25rem solid black;
+      overflow: auto;
+      + .image {
+        margin-top: 3rem;
+      }
+    }
+  }
+  .image-description {
+    flex: 1;
+  }
+  .random-columns {
+    display: flex;
+    align-items: center;
+    margin-right: 2.5rem;
+    justify-content: space-around;
+    .column {
+      width: 4rem;
+      border-radius: 3.125rem;
+      background-color: orange;
+      +.column{
+        margin-left: 1rem;
+      }
+    }
+  }
+}
