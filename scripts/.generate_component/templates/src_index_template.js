@@ -6,16 +6,16 @@ const fs = require("fs");
  */
 exports.updateSrcIndexFile = (folder, componentName, componentType) => {
   // READFILESYNC: Returns the contents of the path.
-  fileContent = fs.readFileSync("./src/index.ts");
+  fileContent = fs.readFileSync("./src/components/index.ts");
   // array which contains the index of the line break in src/index.ts
   indexes = [...fileContent.toString().matchAll(/^[ \t]*$/gm)];
 
   fileContent = fileContent.toString().substring(indexes[componentType - 1].index);
   // OPENSYNC: Returns an integer representing the file descriptor.
-  fileDescriptor = fs.openSync("./src/index.ts", "r+");
+  fileDescriptor = fs.openSync("./src/components/index.ts", "r+");
 
   var exportString = new Buffer(
-    `export { ${componentName} } from "./${folder}/${componentName}";\n${fileContent}`,
+    `export { ${componentName} } from "./${componentName}";\n${fileContent}`,
   );
   /**
    * writeSync - https://www.geeksforgeeks.org/node-js-fs-writesync-method/
