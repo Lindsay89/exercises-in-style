@@ -6,7 +6,7 @@
   .gallery-background-image {
     height: 100%;
     width: 100%;
-    background-size: 100% 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     position: absolute;
     transition: opacity 1s linear;
@@ -45,7 +45,7 @@
       .image {
         width: 7rem;
         height: 7rem;
-        background-size: 100% 100%;
+        background-size: cover;
         background-repeat: no-repeat;
         border-radius: 100%;
         border: 0.25rem solid black;

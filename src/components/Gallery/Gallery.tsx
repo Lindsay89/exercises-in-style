@@ -41,9 +41,9 @@ const Gallery: React.FC<GalleryProps> = ({ className, images, ...rest }) => {
   useEffect(() => {
     if (ref.current) {
       setPosition((ref.current?.clientHeight as number) / 2 - 80);
-      console.log("qui");
     }
   }, []);
+
   const calculatePositions = (index: number) => {
     if (index > selectedImage)
       return (
@@ -60,6 +60,7 @@ const Gallery: React.FC<GalleryProps> = ({ className, images, ...rest }) => {
       "px"
     );
   };
+
   return (
     <div className={classList} {...rest} ref={ref}>
       {images.map((img, index) => (
