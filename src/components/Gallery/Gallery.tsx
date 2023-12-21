@@ -36,16 +36,12 @@ const Gallery: React.FC<GalleryProps> = ({ className, images, ...rest }) => {
     if (ref.current) {
       setPosition(ref.current?.clientHeight / 2 - 80);
     }
-
     setSelectedImage(img);
-    console.log(ref.current);
   };
   useEffect(() => {
-    if (
-      ref.current &&
-      ref.current.style.backgroundImage.includes(images[selectedImage])
-    ) {
+    if (ref.current) {
       setPosition((ref.current?.clientHeight as number) / 2 - 80);
+      console.log("qui");
     }
   }, []);
   const calculatePositions = (index: number) => {
@@ -57,15 +53,29 @@ const Gallery: React.FC<GalleryProps> = ({ className, images, ...rest }) => {
         (index - selectedImage) * 20 +
         "px"
       );
-    return position - 120*(selectedImage-index) - (selectedImage-index) * 20  + "px";
+    return (
+      position -
+      120 * (selectedImage - index) -
+      (selectedImage - index) * 20 +
+      "px"
+    );
   };
   return (
-    <div className={classList} {...rest}>
-      <div
-        style={{ backgroundImage: `url(${images[selectedImage]})` }}
-        className="gallery-background-image"
-        ref={ref}
-      />
+    <div className={classList} {...rest} ref={ref}>
+      {images.map((img, index) => (
+        <div
+          style={{
+            backgroundImage: `url(${images[index]})`,
+          }}
+          className={
+            index === selectedImage
+              ? "gallery-background-image selected"
+              : "gallery-background-image"
+          }
+          key={img}
+        />
+      ))}
+
       <div className="images-container">
         <div className="images-scroll">
           {images.map((image, index) => (
@@ -89,23 +99,23 @@ const Gallery: React.FC<GalleryProps> = ({ className, images, ...rest }) => {
         <div className="random-columns">
           <div
             className="column"
-            style={{ height: `${Math.floor(Math.random() * 6) + 15}rem` }}
+            style={{ height: `${Math.floor(Math.random() * 31) + 50}%` }}
           />
           <div
             className="column"
-            style={{ height: `${Math.floor(Math.random() * 6) + 15}rem` }}
+            style={{ height: `${Math.floor(Math.random() * 31) + 50}%` }}
           />
           <div
             className="column"
-            style={{ height: `${Math.floor(Math.random() * 6) + 15}rem` }}
+            style={{ height: `${Math.floor(Math.random() * 31) + 50}%` }}
           />
           <div
             className="column"
-            style={{ height: `${Math.floor(Math.random() * 6) + 15}rem` }}
+            style={{ height: `${Math.floor(Math.random() * 31) + 50}%` }}
           />
           <div
             className="column"
-            style={{ height: `${Math.floor(Math.random() * 6) + 15}rem` }}
+            style={{ height: `${Math.floor(Math.random() * 31) + 50}%` }}
           />
         </div>
       </div>
