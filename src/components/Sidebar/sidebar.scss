@@ -4,25 +4,25 @@
   width: 3rem;
   transition: width 1s;
   transition-delay: 0.5s;
-  h1 {
-    opacity: 0;
-    transition: all 1s;
-  }
-  .sidebar-link {
-    font-size: 0;
-    transition: all 1s;
-  }
-  &.isOpen {
-    width: 15rem;
-    transition: width 1s;
-    h1 {
+  box-shadow: 0.25rem 0.25rem 1rem 0.25rem #000000;
+  .sidebar-title {
+    position: relative;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .extended-title {
+      opacity: 0;
+      font-size: 0;
+      transition: all 1s;
+    }
+    .title {
       opacity: 1;
       transition: all 1s;
-      transition-delay: 0.5s;
     }
-    .sidebar-link {
-      font-size: 1rem;
-      transition: all 1s;
+    .extended-title,
+    .title {
+      position: absolute;
     }
   }
   .sidebar-content {
@@ -31,6 +31,52 @@
     a {
       display: flex;
       align-items: center;
+      position: relative;
+      overflow: hidden;
+      svg {
+        z-index: 1;
+      }
+      .sidebar-link {
+        z-index: 0;
+        position: absolute;
+        left: -6rem;
+        transition: all 1.5s;
+        opacity: 0;
+        width: 0;
+        transition-delay: 0.75s;
+      }
     }
+  }
+  &.isOpen {
+    width: 15rem;
+    transition: width 1s;
+    .sidebar-title {
+      .title {
+        transition: all 1s;
+        opacity: 0;
+        font-size: 2rem;
+      }
+      .extended-title {
+        transition: all 1s;
+        opacity: 1;
+        font-size: 2rem;
+      }
+    }
+    .sidebar-content .sidebar-link {
+      left: 2rem;
+      opacity: 1;
+      width: auto;
+      transition-delay: 1s;
+      transition: all 1s;
+    }
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

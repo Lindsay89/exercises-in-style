@@ -3,4 +3,10 @@
   height: 100vh;
   text-align: center;
   overflow: hidden;
+  .scaffold-content{
+    display: flex;
+    padding: 1rem;
+    justify-content: center;
+    flex: 1;
+  }
 }
