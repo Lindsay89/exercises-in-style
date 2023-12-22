@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { Scaffold } from "./components";
+import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { HomePage } from "./views/HomePage";
-import { GalleryPage } from "./views/GalleryPage";
 import { routes } from "./routes";
 
-const router = createBrowserRouter(routes, { basename: "/eis" });
+const router = createBrowserRouter(routes, {
+  basename: process.env.PUBLIC_URL,
+});
 
 function App() {
   return <RouterProvider router={router} />;
