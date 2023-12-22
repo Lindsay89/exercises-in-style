@@ -34,7 +34,7 @@ const Scaffold: React.FC<ScaffoldProps> = ({
   return (
     <div className={classList} {...rest}>
       <Sidebar />
-      {children}
+      <div className="scaffold-content">{children}</div>
     </div>
   );
 };

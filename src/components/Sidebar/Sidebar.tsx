@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
 import { DefaultProps } from "../../utils/types";
 import { Link } from "react-router-dom";
+import { Home, Image } from "react-feather";
+import { Button } from "../Button";
+import { useTranslation } from "react-i18next";
 
 // styles
 import "./sidebar.scss";
@@ -23,11 +26,27 @@ const defaultProps: SidebarOptionalProps = {
 };
 
 const Sidebar: React.FC<SidebarProps> = ({ className, ...rest }) => {
-  const classList = classNames("eis-sidebar", className);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const classList = classNames("eis-sidebar", { isOpen }, className);
+  const { t } = useTranslation();
+
   return (
     <div className={classList} {...rest}>
-      <Link to={"/"}>Homepage</Link>
-      <Link to={"/Gallery"}>Gallery</Link>
+      <Button onClick={() => setIsOpen(!isOpen)} icon={"Menu"} />
+      <div className="sidebar-title">
+        <h1 className="extended-title">{t("exercisesInStyle")}</h1>
+        <h1 className="title">{t("eis")}</h1>
+      </div>
+      <div className="sidebar-content">
+        <Link to={"/"}>
+          <Home />
+          <span className="sidebar-link">Homepage</span>
+        </Link>
+        <Link to={"/Gallery"}>
+          <Image />
+          <span className="sidebar-link">Gallery</span>
+        </Link>
+      </div>
     </div>
   );
 };

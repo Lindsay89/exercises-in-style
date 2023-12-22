@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { DefaultProps } from "../../utils/types";
+import * as FeatherIcon from "react-feather";
 
 // styles
 import "./button.scss";
@@ -15,6 +16,7 @@ interface ButtonRequiredProps {
 interface ButtonOptionalProps extends DefaultProps {
   // The button children
   children?: React.ReactNode;
+  icon?: keyof typeof FeatherIcon;
 }
 
 // Combined required and optional props to build the full prop interface
@@ -29,12 +31,16 @@ const Button: React.FC<ButtonProps> = ({
   className,
   children,
   onClick,
+  icon,
   ...rest
 }) => {
   const classList = classNames("eis-button", className);
+  const Icon = icon && FeatherIcon[icon];
+
   return (
     <button className={classList} onClick={onClick} {...rest}>
       {children}
+      {Icon && <Icon />}
     </button>
   );
 };
