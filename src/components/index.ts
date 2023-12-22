@@ -1,3 +1,4 @@
 export { Gallery } from "./Gallery";
-export { Sidebar } from "./Sidebar";
 export { Button } from "./Button";
+export { Scaffold } from "./Scaffold";
+export { Sidebar } from "./Sidebar";

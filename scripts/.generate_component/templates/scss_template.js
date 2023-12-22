@@ -4,8 +4,7 @@
 exports.createComponentScssFile = (name, prjName) => {
   const nextPrjName = prjName.slice(0, 1).toLowerCase() + prjName.slice(1, prjName.length);
 
-  return `
-.${nextPrjName}-${name}{
+  return `.${nextPrjName}-${name}{
 
 }`;
 };

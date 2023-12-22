@@ -1,28 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { GalleryPage } from './views/GalleryPage';
+import React, { useState } from "react";
+import { Scaffold } from "./components";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { HomePage } from "./views/HomePage";
+import { GalleryPage } from "./views/GalleryPage";
+import { routes } from "./routes";
+
+const router = createBrowserRouter(routes, { basename: "/eis" });
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-          My app
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

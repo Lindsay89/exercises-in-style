@@ -2,7 +2,9 @@
  * This file will create the component folder and the component’s files with the correct content.
  */
 const fs = require("fs");
-const { createComponentTestFile } = require("./templates/component_spec_template");
+const {
+  createComponentTestFile,
+} = require("./templates/component_spec_template");
 const { createComponentFile } = require("./templates/component_template");
 const { createComponentIndexFile } = require("./templates/index_template");
 const { createComponentScssFile } = require("./templates/scss_template");
@@ -37,7 +39,8 @@ rl.question(
       if (!name) {
         throw new Error("You must include a component name.");
       }
-      componentName = name.slice(0, 1).toUpperCase() + name.slice(1, name.length);
+      componentName =
+        name.slice(0, 1).toUpperCase() + name.slice(1, name.length);
       path = `./src/${folder}/${componentName}/`;
 
       // throw an error if the folder already exists
@@ -48,51 +51,56 @@ rl.question(
       // create the folder
       fs.mkdirSync(path);
 
-      rl.question("Project name (use camelCase if needed): ", function (project) {
-        if (!project) throw new Error("You must include a project name.");
-        prjName = project;
-        componentType = type;
+      rl.question(
+        "Project name (use camelCase if needed): ",
+        function (project) {
+          if (!project) throw new Error("You must include a project name.");
+          prjName = project;
+          componentType = type;
 
-        rl.close();
-      });
+          rl.close();
+        }
+      );
     });
-  },
+  }
 );
 
 rl.on("close", function () {
   const componentClassName =
-    componentName.slice(0, 1).toLowerCase() + componentName.slice(1, componentName.length);
+    componentName.slice(0, 1).toLowerCase() +
+    componentName.slice(1, componentName.length);
 
   // component.jsx
   fs.writeFileSync(
     `${path}/${componentName}.tsx`,
     createComponentFile(componentName, prjName),
-    writeFileErrorHandler,
+    writeFileErrorHandler
   );
 
   // component.scss
   fs.writeFileSync(
     `${path}/${componentClassName}.scss`,
     createComponentScssFile(componentClassName, prjName),
-    writeFileErrorHandler,
+    writeFileErrorHandler
   );
 
   // spec.jsx
   fs.writeFileSync(
     `${path}/${componentName}.spec.tsx`,
     createComponentTestFile(componentName, prjName, componentClassName),
-    writeFileErrorHandler,
+    writeFileErrorHandler
   );
 
   // index.tsx
   fs.writeFileSync(
     `${path}/index.ts`,
     createComponentIndexFile(componentName),
-    writeFileErrorHandler,
+    writeFileErrorHandler
   );
-
-  // update the src index file
-  updateSrcIndexFile(folder, componentName, componentType);
+  if (componentType === 1) {
+    // update the src index file
+    updateSrcIndexFile(folder, componentName, componentType);
+  }
 
   process.exit(0);
 });
