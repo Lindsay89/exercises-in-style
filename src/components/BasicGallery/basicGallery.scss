@@ -1,0 +1,26 @@
+.eis-basicGallery {
+  animation: rotating 1s linear infinite;
+  transform-style: preserve-3d;
+  position: relative;
+  .gallery-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: center;
+    transform: rotateY(calc(var(--imgPosition) * 45deg)) translateZ(400px);
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}
+
+@keyframes rotating {
+  from {
+    transform: perspective(1000px) rotateY(0deg);
+  }
+  to {
+    transform: perspective(1000px) rotateY(360deg);
+  }
+}
