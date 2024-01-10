@@ -1,6 +1,5 @@
 import React from "react";
-import { Gallery } from "../../components";
-import { BasicGallery } from "../../components/BasicGallery";
+import { Gallery, RotatingGallery } from "../../components";
 
 const GalleryPage: React.FC = () => (
   <div>
@@ -19,9 +18,18 @@ const GalleryPage: React.FC = () => (
         "https://picsum.photos/1600/1000?random&category=forest",
       ]}
     />
-    <BasicGallery
+    <p>
+      This is a rotating gallery, I see it on Instagram{" "}
+      <a href="https://www.instagram.com/reel/CxIl1yitgN3/?igsh=MXAzMDF1bDFoeXU4cg==">
+        here.
+      </a>
+      . It's cool but I think is not completed yet. I'll to add some more
+      feature soon.
+    </p>
+    <RotatingGallery
       images={[
         "https://picsum.photos/300/600?random&category=nature",
+        "https://picsum.photos/300/600?random&category=sun",
         "https://picsum.photos/300/600?random&category=sea",
         "https://picsum.photos/300/600?random&category=city",
         "https://picsum.photos/300/600?random&category=ocean",

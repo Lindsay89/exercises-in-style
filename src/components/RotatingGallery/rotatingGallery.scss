@@ -1,0 +1,52 @@
+.eis-rotatingGallery {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(https://picsum.photos/1024/1024?random&category=nature);
+  background-repeat: no-repeat;
+  background-size: cover;
+  .rotating-container {
+    position: relative;
+    width: 30%;
+    height: 30%;
+    transform-style: preserve-3d;
+    animation: rotating 20s linear infinite;
+
+    .gallery-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transform-origin: center;
+      transform: rotateY(calc(var(--imgPosition) * 50deg)) translateZ(400px);
+      -webkit-box-reflect: below 1rem linear-gradient(transparent, transparent, #004);
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    &:hover {
+      animation-play-state: paused;
+      .gallery-image:hover {
+        transform: rotateY(calc(var(--imgPosition) * 50deg)) translateZ(400px) scale(1.5);
+        z-index: 9;
+      }
+    }
+  }
+}
+@keyframes rotating {
+  from {
+    transform: perspective(2000px) rotateY(0deg);
+  }
+  to {
+    transform: perspective(2000px) rotateY(360deg);
+  }
+}
