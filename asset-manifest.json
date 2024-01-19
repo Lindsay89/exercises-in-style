@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/exercises-in-style/static/css/main.b43c8ce2.css",
-    "main.js": "/exercises-in-style/static/js/main.367e5643.js",
-    "static/js/787.b72aa3c6.chunk.js": "/exercises-in-style/static/js/787.b72aa3c6.chunk.js",
+    "main.css": "/exercises-in-style/static/css/main.3c7304fb.css",
+    "main.js": "/exercises-in-style/static/js/main.15bb8f01.js",
+    "static/js/787.ba1977c0.chunk.js": "/exercises-in-style/static/js/787.ba1977c0.chunk.js",
     "index.html": "/exercises-in-style/index.html",
-    "main.b43c8ce2.css.map": "/exercises-in-style/static/css/main.b43c8ce2.css.map",
-    "main.367e5643.js.map": "/exercises-in-style/static/js/main.367e5643.js.map",
-    "787.b72aa3c6.chunk.js.map": "/exercises-in-style/static/js/787.b72aa3c6.chunk.js.map"
+    "main.3c7304fb.css.map": "/exercises-in-style/static/css/main.3c7304fb.css.map",
+    "main.15bb8f01.js.map": "/exercises-in-style/static/js/main.15bb8f01.js.map",
+    "787.ba1977c0.chunk.js.map": "/exercises-in-style/static/js/787.ba1977c0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b43c8ce2.css",
-    "static/js/main.367e5643.js"
+    "static/css/main.3c7304fb.css",
+    "static/js/main.15bb8f01.js"
   ]
 }
