@@ -3,29 +3,29 @@ import classNames from "classnames";
 import { DefaultProps } from "../../utils/types";
 
 // styles
-import "./gallery.scss";
+import "./pptGallery.scss";
 
 // Required Props
-interface GalleryRequiredProps {
+interface PPTGalleryRequiredProps {
   // Array of images to show
   images: string[];
 }
 
 // Optional Props
-interface GalleryOptionalProps extends DefaultProps {}
+interface PPTGalleryOptionalProps extends DefaultProps {}
 
 // Combined required and optional props to build the full prop interface
-export interface GalleryProps
-  extends GalleryRequiredProps,
-    GalleryOptionalProps {}
+export interface PPTGalleryProps
+  extends PPTGalleryRequiredProps,
+    PPTGalleryOptionalProps {}
 
 // use the optional prop interface to define the default props
-const defaultProps: GalleryOptionalProps = {
-  "data-testid": "eis-gallery",
+const defaultProps: PPTGalleryOptionalProps = {
+  "data-testid": "eis-pptGallery",
 };
 
-const Gallery: React.FC<GalleryProps> = ({ className, images, ...rest }) => {
-  const classList = classNames("eis-gallery", className);
+const PPTGallery: React.FC<PPTGalleryProps> = ({ className, images, ...rest }) => {
+  const classList = classNames("eis-pptGallery", className);
   const [selectedImage, setSelectedImage] = useState<number>(0);
   const ref = createRef<HTMLDivElement>();
 
@@ -42,7 +42,7 @@ const Gallery: React.FC<GalleryProps> = ({ className, images, ...rest }) => {
     if (ref.current) {
       setPosition((ref.current?.clientHeight as number) / 2 - 80);
     }
-  }, []);
+  }, [ref]);
 
   const calculatePositions = (index: number) => {
     if (index > selectedImage)
@@ -70,8 +70,8 @@ const Gallery: React.FC<GalleryProps> = ({ className, images, ...rest }) => {
           }}
           className={
             index === selectedImage
-              ? "gallery-background-image selected"
-              : "gallery-background-image"
+              ? "pptGallery-background-image selected"
+              : "pptGallery-background-image"
           }
           key={img}
         />
@@ -96,7 +96,7 @@ const Gallery: React.FC<GalleryProps> = ({ className, images, ...rest }) => {
             />
           ))}
         </div>
-        <p className="-image-description">some fancy description</p>
+        <p className="image-description">some fancy description</p>
         <div className="random-columns">
           <div
             className="column"
@@ -124,6 +124,6 @@ const Gallery: React.FC<GalleryProps> = ({ className, images, ...rest }) => {
   );
 };
 
-Gallery.defaultProps = defaultProps as Partial<GalleryOptionalProps>;
+PPTGallery.defaultProps = defaultProps as Partial<PPTGalleryOptionalProps>;
 
-export default React.memo(Gallery);
+export default React.memo(PPTGallery);

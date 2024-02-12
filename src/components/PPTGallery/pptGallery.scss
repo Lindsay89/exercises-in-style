@@ -1,9 +1,9 @@
-.eis-gallery {
+.eis-pptGallery {
   height: 30rem;
   width: 80%;
   position: relative;
   overflow: hidden;
-  .gallery-background-image {
+  .pptGallery-background-image {
     height: 100%;
     width: 100%;
     background-size: cover;
@@ -61,6 +61,7 @@
     }
     .image-description {
       flex: 1;
+      color: white;
     }
     .random-columns {
       display: flex;
