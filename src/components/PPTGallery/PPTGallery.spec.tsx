@@ -1,5 +1,5 @@
 import React from "react";
-import Gallery from "./Gallery";
+import PPTGallery from "./PPTGallery";
 import performStandardTest from "../../utils/functions/performStandardTest";
 
 const defaultProps = {
@@ -7,5 +7,5 @@ const defaultProps = {
 };
 
 describe("Gallery Component", () => {
-  performStandardTest(Gallery, defaultProps, "eis-gallery");
+  performStandardTest(PPTGallery, defaultProps, "eis-gallery");
 });

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { DefaultProps } from "../../utils/types";
-import { Link } from "react-router-dom";
 import { Home, Image } from "react-feather";
 import { Button } from "../Button";
 import { useTranslation } from "react-i18next";
+import SidebarItem from "./SidebarItem";
+import SidebarGroup from "./SidebarGroup";
 
 // styles
 import "./sidebar.scss";
@@ -38,14 +39,19 @@ const Sidebar: React.FC<SidebarProps> = ({ className, ...rest }) => {
         <h1 className="title">{t("eis")}</h1>
       </div>
       <div className="sidebar-content">
-        <Link to={"/"}>
-          <Home />
-          <span className="sidebar-link">Homepage</span>
-        </Link>
-        <Link to={"/Gallery"}>
-          <Image />
-          <span className="sidebar-link">Gallery</span>
-        </Link>
+        <SidebarItem linkTo="/" label={t("homepage")} icon={<Home />} />
+        {<SidebarGroup categoryName={t("galleries")} icon={<Image />}>
+          <SidebarItem
+            linkTo="/PPTGallery"
+            label={t("pptGallery")}
+            icon={<Image />}
+          />
+          <SidebarItem
+            linkTo="/RotatingGallery"
+            label={t("rotatingGallery")}
+            icon={<Image />}
+          />
+        </SidebarGroup>}
       </div>
     </div>
   );

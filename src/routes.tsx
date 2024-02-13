@@ -1,5 +1,6 @@
 import { Scaffold } from "./components";
-import { GalleryPage } from "./views/GalleryPage";
+import { PPTGalleryPage } from "./views/PPTGalleryPage";
+import { RotatingGalleryPage } from "./views/RotatingGalleryPage";
 import { HomePage } from "./views/HomePage";
 
 export const routes = [
@@ -12,10 +13,18 @@ export const routes = [
     ),
   },
   {
-    path: "/Gallery",
+    path: "/PPTGallery",
     element: (
       <Scaffold>
-        <GalleryPage />
+        <PPTGalleryPage />
+      </Scaffold>
+    ),
+  },
+  {
+    path: "/RotatingGallery",
+    element: (
+      <Scaffold>
+        <RotatingGalleryPage />
       </Scaffold>
     ),
   },
