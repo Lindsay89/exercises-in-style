@@ -1,0 +1,59 @@
+.eis-jsRotatingGallery {
+  padding: 2rem;
+  background-color: blue;
+  height: 100%;
+  overflow: hidden;
+
+  .jsRotatingGallery-container {
+    position: relative;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    transform-style: preserve-3d;
+    animation: rotating 20s linear infinite;
+    /* animation-play-state: paused;
+    transform: rotateY(0deg); */
+    /* 
+    &.animation-stop {
+      animation: none;
+    }
+    &.animation-active {
+      animation-play-state: running;
+    } */
+    .jsRotatingGallery-content {
+      transform-style: preserve-3d;
+      height: 100%;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      transition: all;
+      transition-delay: 0.5s;
+      transition-duration: 1s;
+      .jsRotatingGallery-image {
+        position: absolute;
+        transform-origin: center;
+        width: 30%;
+        height: 50%;
+
+        img {
+          /* position: absolute;
+          top: 0;
+          left: 0; */
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
+@keyframes rotating {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
