@@ -39,7 +39,7 @@ const JsRotatingGallery: React.FC<JsRotatingGalleryProps> = ({
     const container = document.getElementsByClassName(
       "jsRotatingGallery-container"
     )[0];
-    /* container.style.setProperty('animation-play-state','running') */
+
     container.classList.add("animation-active");
     const { width } = container.getBoundingClientRect();
     for (let i = 0; i < images.length; i += 1) {
@@ -48,45 +48,39 @@ const JsRotatingGallery: React.FC<JsRotatingGalleryProps> = ({
       const transformValue = ` ${rotateValue} translateZ(${width / 2}px)`;
       images[i].style.setProperty("transform", transformValue);
     }
-    interval.current = setInterval(() => console.log("ciao"), 2000);
+    interval.current = setInterval(startRotation, 50);
     container.classList.add("rotation-animation");
-  }, []);
 
-  const handleOnImgMouseEnter = (e, index) => {
-    console.log(index);
-    const content = document.getElementsByClassName(
-      "jsRotatingGallery-content"
-    )[0];
+    // Cleanup function to clear interval
+    return () => clearInterval(interval.current);
+  }, []);
+  var startRotationValue = 0;
+  const startRotation = () => {
     const container = document.getElementsByClassName(
       "jsRotatingGallery-container"
     )[0];
-    const rotateValueCalc = 360 - (360 / images.length) * index;
+    // ++is incrementing startRotationValue by 1
+    const value = ++startRotationValue % 360;
+    container.style.setProperty("transform", `rotateY(${value}deg)`);
+  };
+  const handleOnImgMouseEnter = (e, index) => {
+
+    const content = document.getElementsByClassName(
+      "jsRotatingGallery-content"
+    )[0];
+    const rotateValueCalc =
+      360 - (360 / images.length) * index - startRotationValue;
     clearInterval(interval.current);
-    container.classList.add("animation-stop");
-    document
-      .getElementsByClassName("jsRotatingGallery-content")[0]
-      .style.setProperty("transform", `rotateY(${rotateValueCalc}deg)`);
+
+    content.style.setProperty("transform", `rotateY(${rotateValueCalc}deg)`);
     e.target.style.setProperty("transform", "scale(2)");
-    document
-      .getElementsByClassName("jsRotatingGallery-container")[0]
-      .style.setProperty("animation-play-state", "paused");
     /* 
     e.stopPropagation();
     e.preventDefault(); */
   };
   const handleOnMouseLeave = (e, index) => {
-    /* document
-      .getElementsByClassName("jsRotatingGallery-container")[0]
-      .style.setProperty("animation-play-state", "running"); */
-    document
-      .getElementsByClassName("jsRotatingGallery-container")[0]
-      .classList.remove("animation-stop");
-    document
-      .getElementsByClassName("jsRotatingGallery-container")[0]
-      .style.setProperty("animation-play-state", "running");
+    interval.current = setInterval(startRotation, 50);
     e.target.style.setProperty("transform", "scale(1)");
-    e.stopPropagation();
-    e.preventDefault();
   };
   return (
     <div className={classList} {...rest}>
