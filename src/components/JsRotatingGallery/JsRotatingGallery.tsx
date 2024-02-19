@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useEffect } from "react";
+import React, { MouseEventHandler, useEffect, useRef } from "react";
 import classNames from "classnames";
 import { DefaultProps } from "../../utils/types";
 
@@ -30,6 +30,8 @@ const JsRotatingGallery: React.FC<JsRotatingGalleryProps> = ({
   ...rest
 }) => {
   const classList = classNames("eis-jsRotatingGallery", className);
+  let interval = useRef();
+
   useEffect(() => {
     const images = document.getElementsByClassName(
       "jsRotatingGallery-image"
@@ -46,6 +48,7 @@ const JsRotatingGallery: React.FC<JsRotatingGalleryProps> = ({
       const transformValue = ` ${rotateValue} translateZ(${width / 2}px)`;
       images[i].style.setProperty("transform", transformValue);
     }
+    interval.current = setInterval(() => console.log("ciao"), 2000);
     container.classList.add("rotation-animation");
   }, []);
 
@@ -58,14 +61,15 @@ const JsRotatingGallery: React.FC<JsRotatingGalleryProps> = ({
       "jsRotatingGallery-container"
     )[0];
     const rotateValueCalc = 360 - (360 / images.length) * index;
-
+    clearInterval(interval.current);
     container.classList.add("animation-stop");
     document
       .getElementsByClassName("jsRotatingGallery-content")[0]
       .style.setProperty("transform", `rotateY(${rotateValueCalc}deg)`);
     e.target.style.setProperty("transform", "scale(2)");
     document
-      .getElementsByClassName("jsRotatingGallery-container")[0].style.setProperty('animation-play-state','paused')
+      .getElementsByClassName("jsRotatingGallery-container")[0]
+      .style.setProperty("animation-play-state", "paused");
     /* 
     e.stopPropagation();
     e.preventDefault(); */
