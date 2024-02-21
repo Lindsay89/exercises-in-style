@@ -30,7 +30,8 @@ const JsRotatingGallery: React.FC<JsRotatingGalleryProps> = ({
   ...rest
 }) => {
   const classList = classNames("eis-jsRotatingGallery", className);
-  let interval = useRef();
+  let interval = useRef<NodeJS.Timer>();
+  let startRotationValue = useRef<number>(0);
 
   useEffect(() => {
     const images = document.getElementsByClassName(
@@ -54,34 +55,38 @@ const JsRotatingGallery: React.FC<JsRotatingGalleryProps> = ({
     // Cleanup function to clear interval
     return () => clearInterval(interval.current);
   }, []);
-  var startRotationValue = 0;
   const startRotation = () => {
     const container = document.getElementsByClassName(
       "jsRotatingGallery-container"
-    )[0];
+    )[0] as HTMLDivElement;
     // ++is incrementing startRotationValue by 1
-    const value = ++startRotationValue % 360;
-    container.style.setProperty("transform", `rotateY(${value}deg)`);
-  };
-  const handleOnImgMouseEnter = (e, index) => {
 
+    startRotationValue.current = ++startRotationValue.current % 360;
+    container.style.setProperty(
+      "transform",
+      `rotateY(${startRotationValue.current}deg)`
+    );
+  };
+  const handleOnImgMouseEnter = (
+    e: React.MouseEvent<HTMLSpanElement>,
+    index: number
+  ) => {
     const content = document.getElementsByClassName(
       "jsRotatingGallery-content"
-    )[0];
+    )[0] as HTMLDivElement;
     const rotateValueCalc =
-      360 - (360 / images.length) * index - startRotationValue;
+      360 - (360 / images.length) * index - startRotationValue.current;
     clearInterval(interval.current);
 
     content.style.setProperty("transform", `rotateY(${rotateValueCalc}deg)`);
-    e.target.style.setProperty("transform", "scale(2)");
-    /* 
-    e.stopPropagation();
-    e.preventDefault(); */
+    (e.target as HTMLImageElement).style.setProperty("transform", "scale(2)");
   };
-  const handleOnMouseLeave = (e, index) => {
+
+  const handleOnMouseLeave = (e: React.MouseEvent<HTMLSpanElement>) => {
     interval.current = setInterval(startRotation, 50);
-    e.target.style.setProperty("transform", "scale(1)");
+    (e.target as HTMLImageElement).style.setProperty("transform", "scale(1)");
   };
+
   return (
     <div className={classList} {...rest}>
       <div className="jsRotatingGallery-container">
@@ -92,7 +97,7 @@ const JsRotatingGallery: React.FC<JsRotatingGalleryProps> = ({
               style={{ "--imgPosition": index } as React.CSSProperties}
               className="jsRotatingGallery-image"
               onMouseEnter={(e) => handleOnImgMouseEnter(e, index)}
-              onMouseLeave={(e) => handleOnMouseLeave(e, index)}
+              onMouseLeave={(e) => handleOnMouseLeave(e)}
             >
               <img src={img} alt={img} />
             </span>
