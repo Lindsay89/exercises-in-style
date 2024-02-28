@@ -13,18 +13,19 @@ const JsRotatingGalleryPage: React.FC = () => {
         <a href="https://www.instagram.com/reel/CxIl1yitgN3/?igsh=MXAzMDF1bDFoeXU4cg==">
           here.
         </a>
-        It's cool but I think is not completed yet. I'll to add some more
-        feature soon.
+        <br />
+        Going hover an image with your cursor, the gallery will rotate to center the hovered image.
+        I think it's cool but I think is not completed yet. (Some bugs on rotation 	&#128517;)
       </p>
       <JsRotatingGallery
         images={[
-          "https://picsum.photos/300/600?random&category=nature",
-          "https://picsum.photos/300/600?random&category=sun",
-          "https://picsum.photos/300/600?random&category=sea",
-          "https://picsum.photos/300/600?random&category=city",
-          "https://picsum.photos/300/600?random&category=ocean",
-          "https://picsum.photos/300/600?random&category=animal",
-          "https://picsum.photos/300/600?random&category=forest",
+          "https://picsum.photos/1024/600?random&category=nature",
+          "https://picsum.photos/1024/600?random&category=sun",
+          "https://picsum.photos/1024/600?random&category=sea",
+          "https://picsum.photos/1024/600?random&category=city",
+          "https://picsum.photos/1024/600?random&category=ocean",
+          "https://picsum.photos/1024/600?random&category=animal",
+          "https://picsum.photos/1024/600?random&category=forest",
         ]}
       />
     </div>
