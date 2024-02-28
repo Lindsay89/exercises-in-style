@@ -1,0 +1,37 @@
+.eis-jsRotatingGallery {
+  padding: 2rem;
+  height: 100%;
+  overflow: hidden;
+
+  .jsRotatingGallery-container {
+    position: relative;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    transform-style: preserve-3d;
+    .jsRotatingGallery-content {
+      transform-style: preserve-3d;
+      height: 100%;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      transition: all;
+      transition-delay: 0.5s;
+      transition-duration: 1s;
+      .jsRotatingGallery-image {
+        position: absolute;
+        transform-origin: center;
+        width: 30%;
+        height: 50%;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}

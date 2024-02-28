@@ -51,6 +51,11 @@ const Sidebar: React.FC<SidebarProps> = ({ className, ...rest }) => {
             label={t("rotatingGallery")}
             icon={<Image />}
           />
+          <SidebarItem
+            linkTo="/JsRotatingGallery"
+            label={t("jsRotatingGallery")}
+            icon={<Image />}
+          />
         </SidebarGroup>}
       </div>
     </div>
