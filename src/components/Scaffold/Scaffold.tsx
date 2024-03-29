@@ -28,11 +28,12 @@ const defaultProps: ScaffoldOptionalProps = {
 const Scaffold: React.FC<ScaffoldProps> = ({
   className,
   children,
+  style,
   ...rest
 }) => {
   const classList = classNames("eis-scaffold", className);
   return (
-    <div className={classList} {...rest}>
+    <div className={classList} {...rest} >
       <Sidebar />
       <div className="scaffold-content">{children}</div>
     </div>

@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePage Component should render without explode 1`] = `
+<DocumentFragment>
+  <div
+    class="eis-homePage"
+    data-testid="eis-homePage"
+  >
+    <h1>
+      welcomeText
+    </h1>
+    <div>
+      <p>
+        welcomeDesc
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`HomePage Component should render without exploding 1`] = `
+<div
+  class="eis-homePage"
+  data-testid="eis-homePage"
+>
+  <h1>
+    welcomeText
+  </h1>
+  <div>
+    <p>
+      welcomeDesc
+    </p>
+  </div>
+</div>
+`;
