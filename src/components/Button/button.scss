@@ -1,5 +1,12 @@
+@import "../../utils/variables.scss";
+
 .eis-button {
   padding: 0.5rem;
   display: flex;
   align-items: center;
+  color: $text-color;
+  &.primary {
+    background-color: $primary-color;
+    color: white;
+  }
 }

@@ -27,23 +27,19 @@ const defaultProps: ButtonOptionalProps = {
   "data-testid": "eis-button",
 };
 
-const Button: React.FC<ButtonProps> = ({
-  className,
-  children,
-  onClick,
-  icon,
-  ...rest
-}) => {
-  const classList = classNames("eis-button", className);
-  const Icon = icon && FeatherIcon[icon];
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, children, onClick, icon, ...rest }, ref) => {
+    const classList = classNames("eis-button", className);
+    const Icon = icon && FeatherIcon[icon];
 
-  return (
-    <button className={classList} onClick={onClick} {...rest}>
-      {children}
-      {Icon && <Icon />}
-    </button>
-  );
-};
+    return (
+      <button ref={ref} className={classList} onClick={onClick} {...rest}>
+        {children}
+        {Icon && <Icon />}
+      </button>
+    );
+  }
+);
 
 Button.defaultProps = defaultProps as Partial<ButtonOptionalProps>;
 

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { DefaultProps } from "../../utils/types";
 import { useTranslation } from "react-i18next";
+import { availableLanguages } from "../../i18n";
+import { Button } from "../../components";
 
 // styles
 import "./homePage.scss";
@@ -24,12 +26,25 @@ const defaultProps: HomePageOptionalProps = {
 
 const HomePage: React.FC<HomePageProps> = ({ className, ...rest }) => {
   const classList = classNames("eis-homePage", className);
-  const { t } = useTranslation();
-
+  const { i18n, t } = useTranslation();
+  console.log(i18n);
   return (
     <div className={classList} {...rest}>
+      <div className="languages-container">
+        {availableLanguages.map((lang) => (
+          <Button
+            onClick={() => i18n.changeLanguage(lang)}
+            key={lang}
+            className={i18n.language.includes(lang) ? "primary" : ""}
+          >
+            {lang}
+          </Button>
+        ))}
+      </div>
+
       <h1>{t("welcomeText")}</h1>
       <div>
+        <p>{t("whoAmI")}</p>
         <p>{t("welcomeDesc")}</p>
       </div>
     </div>
