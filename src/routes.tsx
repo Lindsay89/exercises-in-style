@@ -7,11 +7,7 @@ import { JsRotatingGalleryPage } from "./views/JsRotatingGalleryPage ";
 export const routes = [
   {
     path: "/",
-    element: (
-      <Scaffold>
-        <HomePage />
-      </Scaffold>
-    ),
+    element: <HomePage />,
   },
   {
     path: "/PPTGallery",

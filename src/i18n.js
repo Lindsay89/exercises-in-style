@@ -1,7 +1,7 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import translationIT from './locales/it-IT/translations.json';
-import translationEN from './locales/en-US/translations.json';
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import translationIT from "./locales/it-IT/translations.json";
+import translationEN from "./locales/en-US/translations.json";
 
 /* import Backend from 'i18next-http-backend'; */
 /* import LanguageDetector from 'i18next-browser-languagedetector'; */
@@ -21,7 +21,7 @@ i18n
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    fallbackLng: 'en-US',
+    fallbackLng: "en-US",
     debug: false,
     resources: {
       it: {
@@ -31,7 +31,9 @@ i18n
         translation: translationEN,
       },
     },
-    lng: 'en-US',
+    lng: "en-US",
   });
 
 export default i18n;
+
+export const availableLanguages = ["en", "it"];

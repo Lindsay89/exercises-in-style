@@ -27,7 +27,7 @@ const defaultProps: SidebarOptionalProps = {
 };
 
 const Sidebar: React.FC<SidebarProps> = ({ className, ...rest }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const classList = classNames("eis-sidebar", { isOpen }, className);
   const { t } = useTranslation();
 
