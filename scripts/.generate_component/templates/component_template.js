@@ -31,10 +31,10 @@ const defaultProps: ${componentName}OptionalProps = {
   "data-testid": "${nextPrjName}-${componentClassName}",
 };
 
-const ${componentName}: React.FC<${componentName}Props> = ({ className, ...rest }) => {
+const ${componentName}: React.forwardRef<${componentName}Props> = ({ className, ...rest }, ref) => {
   const classList = classNames("${nextPrjName}-${componentClassName}", className);
   return (
-    <div className={classList} {...rest}>
+    <div className={classList} {...rest} ref={ref}>
       Hello 👋, I am a ${componentName} component.
     </div>
   );
