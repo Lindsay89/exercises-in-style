@@ -21,6 +21,8 @@ interface ButtonOptionalProps extends DefaultProps {
   size?: SizeStandard;
   // The button's type
   type?: "primary" | "secondary" | "ghost";
+  rounded?: boolean;
+  outlined?: boolean;
   icon?: keyof typeof FeatherIcon;
 }
 
@@ -32,11 +34,33 @@ const defaultProps: ButtonOptionalProps = {
   "data-testid": "eis-button",
   size: "medium",
   type: "primary",
+  rounded: true,
+  outlined: false,
 };
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, children, onClick, size, type, icon, ...rest }, ref) => {
-    const classList = classNames("eis-button", size, type, className);
+  (
+    {
+      className,
+      children,
+      onClick,
+      size,
+      type,
+      rounded,
+      outlined,
+      icon,
+      ...rest
+    },
+    ref
+  ) => {
+    const classList = classNames(
+      "eis-button",
+      size,
+      type,
+      { rounded },
+      { outlined },
+      className
+    );
     const Icon = icon && FeatherIcon[icon];
 
     return (

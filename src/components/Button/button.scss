@@ -23,4 +23,10 @@
     height: 3rem;
     min-height: 3rem;
   }
+  &.rounded {
+    border-radius: 100rem;
+  }
+  &.outlined {
+    background-color: transparent;
+  }
 }

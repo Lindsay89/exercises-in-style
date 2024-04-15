@@ -46,7 +46,6 @@ describe("Button Component", () => {
     expect(screen.getByRole("button")).toHaveClass("large");
   });
 
-
   it("should render in the correct type when provided", () => {
     const { rerender } = render(
       <Button {...defaultProps} type="primary">
@@ -71,5 +70,19 @@ describe("Button Component", () => {
     );
 
     expect(screen.getByRole("button")).toHaveClass("ghost");
+  });
+  it("should be rounded by default", () => {
+    render(<Button {...defaultProps}>click</Button>);
+
+    expect(screen.getByRole("button")).toHaveClass("rounded");
+  });
+  it("should be outlined if outlined prop is provided", () => {
+    render(
+      <Button {...defaultProps} outlined>
+        click
+      </Button>
+    );
+
+    expect(screen.getByRole("button")).toHaveClass("outlined");
   });
 });

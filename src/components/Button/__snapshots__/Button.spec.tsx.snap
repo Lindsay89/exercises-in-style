@@ -2,7 +2,7 @@
 
 exports[`Button Component should render without explode 1`] = `
 <button
-  class="eis-button medium primary"
+  class="eis-button medium primary rounded"
   data-testid="eis-button"
 />
 `;
