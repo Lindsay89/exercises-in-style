@@ -1,17 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button Component should render without explode 1`] = `
-<DocumentFragment>
-  <button
-    class="eis-button"
-    data-testid="eis-button"
-  />
-</DocumentFragment>
-`;
-
-exports[`Button Component should render without exploding 1`] = `
 <button
-  class="eis-button"
+  class="eis-button medium primary"
   data-testid="eis-button"
 />
 `;

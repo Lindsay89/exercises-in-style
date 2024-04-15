@@ -11,7 +11,7 @@ const performStandardTest = (
   it("should render without explode", () => {
     const { getByTestId } = render(<Component {...defaultProps} />);
 
-    expect(getByTestId(dataTestId).id).toMatchSnapshot();
+    expect(getByTestId(dataTestId)).toMatchSnapshot();
   });
 
   it('should accept an "id" prop', () => {
@@ -42,6 +42,16 @@ const performStandardTest = (
     );
 
     expect(getByTestId(dataTestId).getAttribute("style")).toContain("margin");
+  });
+
+  it("should accept a ref reference", () => {
+    const ref = React.createRef();
+    render(
+      <Component {...defaultProps} style={{ margin: "30px" }} ref={ref} />
+    );
+
+    // Assert that the component is rendered and accessible through the ref
+    expect(ref.current).toBeInTheDocument();
   });
 };
 export default performStandardTest;

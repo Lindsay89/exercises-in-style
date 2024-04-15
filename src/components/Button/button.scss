@@ -9,4 +9,18 @@
     background-color: $primary-color;
     color: white;
   }
+  &.small {
+    height: 2rem;
+    min-height: 2rem;
+  }
+
+  &.medium {
+    height: 2.5rem;
+    min-height: 2.5rem;
+  }
+
+  &.large {
+    height: 3rem;
+    min-height: 3rem;
+  }
 }
