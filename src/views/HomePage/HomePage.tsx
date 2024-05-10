@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { DefaultProps } from "../../utils/types";
 import { useTranslation } from "react-i18next";
 import { availableLanguages } from "../../i18n";
-import { Button } from "../../components";
+import { Button, Scaffold, Sidebar } from "../../components";
 
 // styles
 import "./homePage.scss";
@@ -27,27 +27,51 @@ const defaultProps: HomePageOptionalProps = {
 const HomePage: React.FC<HomePageProps> = ({ className, ...rest }) => {
   const classList = classNames("eis-homePage", className);
   const { i18n, t } = useTranslation();
-  console.log(i18n);
+  const [homePageClasses, setHomePageClasses] = useState(classList);
+  const [hideSidebar, setHideSidebar] = useState(true);
+
+  const handleLineClasses = () => {
+    setHomePageClasses(homePageClasses + " with-sidebar");
+    setHideSidebar(false);
+
+    setTimeout(() => document.getElementById("line-container")?.remove(), 2000);
+  };
+
   return (
-    <div className={classList} {...rest}>
-      <div className="languages-container">
-        {availableLanguages.map((lang) => (
-          <Button
-            onClick={() => i18n.changeLanguage(lang)}
-            key={lang}
-            className={i18n.language.includes(lang) ? "primary" : ""}
-          >
-            {lang}
-          </Button>
-        ))}
+    <Scaffold hideScrollbar={hideSidebar} className={homePageClasses}>
+      <div {...rest}>
+        <div className="languages-container">
+          {availableLanguages.map((lang) => (
+            <Button
+              onClick={() => i18n.changeLanguage(lang)}
+              key={lang}
+              className={
+                i18n.language.includes(lang)
+                  ? "language-button selected outlined"
+                  : "language-button primary"
+              }
+            >
+              {lang}
+            </Button>
+          ))}
+        </div>
+        <h1>{t("welcomeText")}</h1>
+        <div>
+          <p>{t("welcomeDesc")}</p>
+        </div>
       </div>
 
-      <h1>{t("welcomeText")}</h1>
-      <div>
-        <p>{t("whoAmI")}</p>
-        <p>{t("welcomeDesc")}</p>
-      </div>
-    </div>
+      <Button
+        className={"line-container"}
+        onClick={handleLineClasses}
+        type="primary"
+        id="line-container"
+      >
+        <div className="line top" />
+        <div className="line center" />
+        <div className="line bottom" />
+      </Button>
+    </Scaffold>
   );
 };
 

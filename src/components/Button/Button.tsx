@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ButtonHTMLAttributes } from "react";
 import classNames from "classnames";
 import { DefaultProps } from "../../utils/types";
 import * as FeatherIcon from "react-feather";
@@ -27,14 +27,17 @@ interface ButtonOptionalProps extends DefaultProps {
 }
 
 // Combined required and optional props to build the full prop interface
-export interface ButtonProps extends ButtonRequiredProps, ButtonOptionalProps {}
+export interface ButtonProps
+  extends ButtonRequiredProps,
+    ButtonOptionalProps,
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, "type" | "onClick"> {}
 
 // use the optional prop interface to define the default props
 const defaultProps: ButtonOptionalProps = {
   "data-testid": "eis-button",
   size: "medium",
   type: "primary",
-  rounded: true,
+  rounded: false,
   outlined: false,
 };
 

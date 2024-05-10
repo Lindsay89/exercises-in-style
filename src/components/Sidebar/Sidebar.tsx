@@ -11,10 +11,14 @@ import SidebarGroup from "./SidebarGroup";
 import "./sidebar.scss";
 
 // Required Props
-interface SidebarRequiredProps {}
+interface SidebarRequiredProps {
+  setIsOpen: () => void;
+}
 
 // Optional Props
-interface SidebarOptionalProps extends DefaultProps {}
+interface SidebarOptionalProps extends DefaultProps {
+  isOpen?: boolean;
+}
 
 // Combined required and optional props to build the full prop interface
 export interface SidebarProps
@@ -24,39 +28,46 @@ export interface SidebarProps
 // use the optional prop interface to define the default props
 const defaultProps: SidebarOptionalProps = {
   "data-testid": "eis-sidebar",
+  isOpen: false,
 };
 
-const Sidebar: React.FC<SidebarProps> = ({ className, ...rest }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+const Sidebar: React.FC<SidebarProps> = ({
+  className,
+  isOpen,
+  setIsOpen,
+  ...rest
+}) => {
   const classList = classNames("eis-sidebar", { isOpen }, className);
   const { t } = useTranslation();
 
   return (
     <div className={classList} {...rest}>
-      <Button onClick={() => setIsOpen(!isOpen)} icon={"Menu"} />
+      <Button onClick={setIsOpen} icon={"Menu"} />
       <div className="sidebar-title">
         <h1 className="extended-title">{t("exercisesInStyle")}</h1>
         <h1 className="title">{t("eis")}</h1>
       </div>
       <div className="sidebar-content">
         <SidebarItem linkTo="/" label={t("homepage")} icon={<Home />} />
-        {<SidebarGroup categoryName={t("galleries")} icon={<Image />}>
-          <SidebarItem
-            linkTo="/PPTGallery"
-            label={t("pptGallery")}
-            icon={<Image />}
-          />
-          <SidebarItem
-            linkTo="/RotatingGallery"
-            label={t("rotatingGallery")}
-            icon={<Image />}
-          />
-          <SidebarItem
-            linkTo="/JsRotatingGallery"
-            label={t("jsRotatingGallery")}
-            icon={<Image />}
-          />
-        </SidebarGroup>}
+        {
+          <SidebarGroup categoryName={t("galleries")} icon={<Image />}>
+            <SidebarItem
+              linkTo="/PPTGallery"
+              label={t("pptGallery")}
+              icon={<Image />}
+            />
+            <SidebarItem
+              linkTo="/RotatingGallery"
+              label={t("rotatingGallery")}
+              icon={<Image />}
+            />
+            <SidebarItem
+              linkTo="/JsRotatingGallery"
+              label={t("jsRotatingGallery")}
+              icon={<Image />}
+            />
+          </SidebarGroup>
+        }
       </div>
     </div>
   );

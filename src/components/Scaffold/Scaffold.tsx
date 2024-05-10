@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
 import { DefaultProps } from "../../utils/types";
 import { Sidebar } from "../Sidebar";
@@ -13,7 +13,10 @@ interface ScaffoldRequiredProps {
 }
 
 // Optional Props
-interface ScaffoldOptionalProps extends DefaultProps {}
+interface ScaffoldOptionalProps extends DefaultProps {
+  // hide scrollbar
+  hideScrollbar?: boolean;
+}
 
 // Combined required and optional props to build the full prop interface
 export interface ScaffoldProps
@@ -23,18 +26,22 @@ export interface ScaffoldProps
 // use the optional prop interface to define the default props
 const defaultProps: ScaffoldOptionalProps = {
   "data-testid": "eis-scaffold",
+  hideScrollbar: false,
 };
 
 const Scaffold: React.FC<ScaffoldProps> = ({
   className,
+  hideScrollbar,
   children,
   style,
   ...rest
 }) => {
-  const classList = classNames("eis-scaffold", className);
+  const classList = classNames("eis-scaffold", { hideScrollbar }, className);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const handleIsOpen = () => setIsOpen(!isOpen);
   return (
-    <div className={classList} {...rest} >
-      <Sidebar />
+    <div className={classList} {...rest}>
+      <Sidebar isOpen={isOpen} setIsOpen={handleIsOpen} />
       <div className="scaffold-content">{children}</div>
     </div>
   );

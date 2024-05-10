@@ -1,8 +1,15 @@
 @import "../src/utils/fonts.scss";
+@import "../src/utils/variables.scss";
 
 body {
   margin: 0;
   font-family: $primary-font, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: $background-color;
+  color: $text-color;
+  a {
+    color: $text-color;
+    font-weight: 600;
+  }
 }
