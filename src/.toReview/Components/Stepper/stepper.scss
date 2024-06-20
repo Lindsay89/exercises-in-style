@@ -1,0 +1,118 @@
+@use "../../theme/utils/variables" as *;
+
+.tecma-stepper {
+  display: flex;
+  .step {
+    display: flex;
+    align-items: start;
+    gap: 0.25rem;
+    align-items: stretch;
+    position: relative;
+    .step-index-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .step-index-line {
+        position: absolute;
+        &.active-step::after {
+          background: linear-gradient(to right, $neutral-90 50%, $primary 50%);
+          background-size: 200% 100%;
+          background-position: left;
+          background-color: $neutral-90;
+          animation: makeItfadeIn2 2s forwards;
+        }
+        &::after {
+          content: "";
+          display: block;
+          height: 100%;
+          width: 0.0625rem;
+          background-color: $neutral-90;
+        }
+      }
+      .step-index {
+        border-radius: 100%;
+        background-color: $neutral-90;
+        width: 1.5rem;
+        height: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $neutral-70;
+        &.active-step {
+          background-color: $primary;
+          color: white;
+          background: linear-gradient(to right, $primary 50%, $neutral-90);
+          background-size: 200% 100%;
+          background-position: right;
+          animation: makeItfadeIn  3s 2s forwards;
+        }
+      }
+    }
+    .step-content {
+      .content {
+        margin: 0.5rem 0 1rem 0;
+      }
+    }
+    p {
+      margin: 0;
+    }
+  }
+  &.vertical {
+    flex-direction: column;
+    .step-index {
+      z-index: 1;
+    }
+    .step-index-line {
+      height: 100%;
+    }
+    .step:last-child {
+      .step-index-line::after {
+        height: 0;
+      }
+    }
+  }
+  &.horizontal {
+    gap: 1rem;
+    .step {
+      flex-direction: column;
+      .step-index-container {
+        position: relative;
+        .step-index {
+          z-index: 1;
+        }
+        .step-index-line {
+          top: 50%;
+          width: 100%;
+          &::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 0.0625rem;
+            background-color: $neutral-90;
+          }
+        }
+      }
+      &:first-child {
+        .step-index-line {
+          left: 50%;
+        }
+      }
+      &:last-child {
+        .step-index-line {
+          right: 50%;
+        }
+      }
+    }
+  }
+}
+@keyframes makeItfadeIn {
+  100% {
+    background-position: left;
+  }
+}
+@keyframes makeItfadeIn2 {
+  0% {
+    background-position: right
+    ;
+  }
+}

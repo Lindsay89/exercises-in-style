@@ -1,0 +1,35 @@
+@import '../../theme/utils/variables.scss'; // TODO create scss library
+
+.tecma-spinner {
+  display: inline-block;
+  border-radius: 100%;
+  border: 0.25rem solid transparent;
+  // TODO: verify the following line to all browsers
+  background: linear-gradient(0.25turn, white 1%, #6bc1b4, black) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+
+  animation: spin 1s linear infinite;
+  &.size-small {
+    width: 2rem;
+    height: 2rem;
+  }
+  &.size-default {
+    width: 3em;
+    height: 3rem;
+  }
+  &.size-large {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
